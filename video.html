@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="author" content="">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="css/style.css" rel="stylesheet">
+  <!-- <script src="jquery-3.5.1.min.js"></script> -->
+  <style>
+  body {
+    margin: 0;
+    background: black;
+	  animation: 4s bgColorFade infinite alternate;
+  }
+
+  #overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #3000a5;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #enter {
+    font-family: fantasy;
+    font-size: 24vw;
+  }
+
+  #overlay.unlocked {
+    animation: 4s disappear 2s;
+    animation-fill-mode: forwards;
+  }
+
+  a {
+    font-size: 4vw;
+    margin: 10px 50px 0;
+  }
+
+  a:hover {
+    text-shadow: 2px 2px #ff0000;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  main div {
+    height: 45vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-family: fantasy
+  }
+
+  @keyframes disappear {
+  	0% {
+  		transform: translateY(0) rotate(0);
+      opacity: 1;
+  	}
+  	100% {
+  		transform: translate(-100%);
+      opacity: 0;
+  	}
+  }
+  </style>
+</head>
+
+<body>
+      <div id="overlay">
+        <h1 id="enter">ENTER</h1>
+      </div>
+
+
+      <main>
+        <img src="giphy.gif">
+        <div>
+          <a>PLAY MOVIE</a>
+          <a>EXTRAS</a>
+          <a>TRAILERS</a>
+        </div>
+      </main>
+
+      <audio controls loop id="playAudio" style="display:none" src="music/bgMusic.mp3">
+      </audio>
+      <script>
+      document.getElementById("enter").addEventListener("click", function(){
+        document.getElementById("playAudio").play();
+        document.getElementById("overlay").classList.add("unlocked");
+      });
+      </script>
+</body>
+
+</html>
