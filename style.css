@@ -7,6 +7,30 @@ body {
   font-family: 'Exo', sans-serif;
 }
 
+.hidden {
+  display: flex;
+  margin: 10px;
+  position: absolute;
+  top: 0;
+  left: 5px;
+}
+
+.hidden svg {
+  width: 1rem;
+  margin-right: 5px;
+}
+
+.hidden span {
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: .3s;
+}
+
+.hidden:hover span {
+    width: 100%;
+}
+
 body:after {
   content: '';
   position: absolute;
