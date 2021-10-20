@@ -102,7 +102,6 @@
     top: 0;
     z-index: 10;
     font-family: 'Oswald', sans-serif;
-    opacity: .3;
     color: #fff;
   }
 
@@ -125,32 +124,29 @@
 
       <section id="mainMovie">
         <div>
-          <a id="back">←</a>
+          <a id="back">← Back</a>
         </div>
-        <video controls id="myVideo">
-          <source src="movies/mainVideo.mp4" type="video/mp4">
-          Your browser does not support HTML video.
-        </video>
+        <iframe id="myVideo" width="560" height="315" src="https://www.youtube.com/embed/xOfWNhLqfR4" title="YouTube video player"
+          frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
       </section>
 
       <section id="extrasMovie">
         <div>
-          <a id="extraBack">←</a>
+          <a id="extraBack">← Back</a>
         </div>
-        <video controls id="myExtraVideo">
-          <source src="movies/extrasVideo.mp4" type="video/mp4">
-          Your browser does not support HTML video.
-        </video>
+        <iframe id="myExtraVideo" width="560" height="315" src="https://www.youtube.com/embed/urib0jVxRQI" title="YouTube video player"
+          frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
       </section>
 
       <section id="trailersMovie">
         <div>
-          <a id="trailersBack">←</a>
+          <a id="trailersBack">← Back</a>
         </div>
-        <video controls id="myTrailersVideo">
-          <source src="movies/trailersVideo.mp4" type="video/mp4">
-          Your browser does not support HTML video.
-        </video>
+        <iframe id="myTrailersVideo" width="560" height="315" src="https://www.youtube.com/embed/0s23HqgzKME" title="YouTube video player"
+          frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
       </section>
 
       <main>
@@ -165,6 +161,18 @@
       <audio controls loop id="playAudio" style="display:none" src="music/bgMusic.mp3">
       </audio>
       <script>
+        var stopVideo = function (element) {
+          var iframe = element.querySelector('iframe');
+          var video = element.querySelector('video');
+          if (iframe) {
+            var iframeSrc = iframe.src;
+            iframe.src = iframeSrc;
+          }
+          if (video) {
+            video.pause();
+          }
+        };
+
         document.getElementById("enter").addEventListener("click", function(){
           document.getElementById("playAudio").play();
           document.getElementById("overlay").classList.add("unlocked");
@@ -175,15 +183,13 @@
           document.getElementById("playAudio").currentTime = 0;
 
           document.getElementById("mainMovie").classList.add("playMovie");
-          document.getElementById("myVideo").play();
         });
 
         document.getElementById("back").addEventListener("click", function(){
           document.getElementById("playAudio").play();
 
           document.getElementById("mainMovie").classList.remove("playMovie");
-          document.getElementById("myVideo").pause();
-          document.getElementById("myVideo").currentTime = 0;
+          stopVideo(document.getElementById("mainMovie"))
         });
 
 
@@ -192,15 +198,13 @@
           document.getElementById("playAudio").currentTime = 0;
 
           document.getElementById("extrasMovie").classList.add("playMovie");
-          document.getElementById("myExtraVideo").play();
         });
 
         document.getElementById("extraBack").addEventListener("click", function(){
             document.getElementById("playAudio").play();
 
           document.getElementById("extrasMovie").classList.remove("playMovie");
-          document.getElementById("myExtraVideo").pause();
-          document.getElementById("myExtraVideo").currentTime = 0;
+          stopVideo(document.getElementById("extrasMovie"))
         });
 
         document.getElementById("playTrailers").addEventListener("click", function(){
@@ -208,7 +212,6 @@
           document.getElementById("playAudio").currentTime = 0;
 
           document.getElementById("trailersMovie").classList.add("playMovie");
-          document.getElementById("myTrailersVideo").play();
         });
 
         document.getElementById("trailersBack").addEventListener("click", function(){
@@ -216,8 +219,7 @@
 
 
           document.getElementById("trailersMovie").classList.remove("playMovie");
-          document.getElementById("myTrailersVideo").pause();
-          document.getElementById("myTrailersVideo").currentTime = 0;
+          stopVideo(document.getElementById("trailersMovie"))
         });
       </script>
 </body>
